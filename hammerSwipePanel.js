@@ -1,8 +1,8 @@
 /*
 * author: "oujizeng",
 * license: "MIT",
-* name: "naturePullRefresh.js",
-* version: "1.2.1"
+* name: "hammerSwipeTabs.js",
+* version: "1.0.1"
 */
 
 (function (root, factory) {
