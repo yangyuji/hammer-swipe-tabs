@@ -1,16 +1,12 @@
 /*
 * author: "oujizeng",
 * license: "MIT",
-* name: "hammerSwipeTabs.js",
-* version: "1.0.1"
+* name: "HammerSwipePanel.js",
+* version: "1.0.2"
 */
 
 (function (root, factory) {
-    if (typeof define === 'function' && define.amd) {
-        define([], function () {
-            return (root.returnExportsGlobal = factory());
-        });
-    } else if (typeof exports === 'object') {
+    if (typeof module != 'undefined' && module.exports) {
         module.exports = factory();
     } else {
         root['HammerSwipePanel'] = factory();
@@ -52,7 +48,7 @@
                     // 已经到最左边了
                     if (currentMoveX === 0) {
                         // 加上阻尼效果
-                        // var x = moveX > clientWidth ? clientWidth * coefficient : moveX * coefficient;
+                        // var x = ev.deltaX > clientWidth ? clientWidth * coefficient : ev.deltaX * coefficient;
                         // 改为不限制滚动距离
                         var x = ev.deltaX * coefficient;
                         scroller.style.transform = 'translate3d(' + x + 'px,0,0)';
@@ -66,7 +62,7 @@
                     // 已经到最右边了
                     if (Math.abs(currentMoveX) >= (panelNum - 1) * clientWidth) {
                         // 加上阻尼效果
-                        // var x = Math.abs(moveX) > clientWidth ? currentMoveX - (clientWidth * coefficient) : currentMoveX - (Math.abs(moveX) * coefficient);
+                        // var x = Math.abs(ev.deltaX) > clientWidth ? currentMoveX - (clientWidth * coefficient) : currentMoveX - (Math.abs(ev.deltaX) * coefficient);
                         // 改为不限制滚动距离
                         var x = currentMoveX - (Math.abs(ev.deltaX) * coefficient);
                         scroller.style.transform = 'translate3d(' + x + 'px,0,0)';
@@ -89,6 +85,7 @@
                 if (ev.type === 'panend') {
 
                     // 放慢动画，避免卡
+                    scroller.style.transitionDelay = '0ms';
                     scroller.style.transitionDuration = '350ms';
 
                     if (isSwipe) {
