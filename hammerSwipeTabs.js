@@ -70,6 +70,8 @@
                     // 已经到最左边了，来一点动画
                     if (currentMoveX === 0) {
                         var x = ev.deltaX * coefficient;
+                        _translate(scroller, 'TransitionTimingFunction', 'linear');
+                        _translate(scroller, 'TransitionDuration', '100ms');
                         _translate(scroller, 'Transform', 'translateX(' + x + 'px)');
                         _transitionEnd(scroller, function (e) {
                             _translate(scroller, 'Transform', 'translateX(' + currentMoveX + 'px)');
@@ -81,15 +83,16 @@
                         currentMoveX += clientWidth;
                         _translate(scroller, 'Transform', 'translateX(' + currentMoveX + 'px)');
                         // 配置panel的高度，避免被高的撑开
-                        setTimeout(function () {
+                        _transitionEnd(scroller, function () {
                             for (var n = 0; n < scroller.children.length; n++) {
                                 if (n === currentPanel - 1) {
+                                    window.scrollTo(0, 0);
                                     scroller.children[n].style.height = 'auto';
                                 } else {
                                     scroller.children[n].style.height = clientHeight + 'px';
                                 }
                             }
-                        }, 0);
+                        });
                     }
                 }
 
@@ -98,6 +101,8 @@
                     // 已经到最右边了，来一点动画
                     if (Math.abs(currentMoveX) >= (panelNum - 1) * clientWidth) {
                         var x = currentMoveX - (Math.abs(ev.deltaX) * coefficient);
+                        _translate(scroller, 'TransitionTimingFunction', 'linear');
+                        _translate(scroller, 'TransitionDuration', '100ms');
                         _translate(scroller, 'Transform', 'translateX(' + x + 'px)');
                         _transitionEnd(scroller, function (e) {
                             _translate(scroller, 'Transform', 'translateX(' + currentMoveX + 'px)');
@@ -109,15 +114,16 @@
                         currentMoveX -= clientWidth;
                         _translate(scroller, 'Transform', 'translateX(' + currentMoveX + 'px)');
                         // 配置panel的高度，避免被高的撑开
-                        setTimeout(function () {
+                        _transitionEnd(scroller, function () {
                             for (var n = 0; n < scroller.children.length; n++) {
                                 if (n === currentPanel - 1) {
+                                    window.scrollTo(0, 0);
                                     scroller.children[n].style.height = 'auto';
                                 } else {
                                     scroller.children[n].style.height = clientHeight + 'px';
                                 }
                             }
-                        }, 0);
+                        });
                     }
                 }
             });
