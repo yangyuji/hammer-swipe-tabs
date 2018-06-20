@@ -16,7 +16,7 @@
     'use strict'
 
     var _translate = function (el, attr, val) {
-        var vendors = ['', 'Webkit', 'ms', 'Moz', 'O'],
+        var vendors = ['', 'webkit', 'ms', 'Moz', 'O'],
             body = document.body || document.documentElement;
 
         [].forEach.call(vendors, function (vendor) {
