@@ -1,4 +1,4 @@
-/*
+/**
 * author: "oujizeng",
 * license: "MIT",
 * github: "https://github.com/yangyuji/hammer-swipe-tabs",
@@ -22,13 +22,14 @@
         [].forEach.call(vendors, function (vendor) {
             var styleAttr = vendor ? vendor + attr : attr.charAt(0).toLowerCase() + attr.substr(1);
             if (typeof body.style[styleAttr] === 'string') {
+                console.log(styleAttr);
                 el.style[styleAttr] = val;
             }
         });
     }
 
     var _transitionEnd = function (el, fun) {
-        var vendors = ['webitTransitionEnd', 'transitionend'];
+        var vendors = ['webitTransitionEnd', 'transitionend', 'msTransitionEnd', 'oTransitionEnd'];
         var handler = function (e) {
             [].forEach.call(vendors, function (vendor) {
                 el.removeEventListener(vendor, handler, false);
@@ -60,7 +61,6 @@
             hammer.on('swipe swipeleft swiperight', function(ev) {
                 console.log(ev.type);
                 if (ev.type === 'swipe') {
-                    _translate(scroller, 'TransitionProperty', 'transform');
                     _translate(scroller, 'TransitionTimingFunction', 'cubic-bezier(0, 0, 0.25, 1)');
                     _translate(scroller, 'TransitionDuration', '350ms');
                 }
