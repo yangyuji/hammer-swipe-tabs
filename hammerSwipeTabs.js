@@ -17,12 +17,11 @@
 
     var _translate = function (el, attr, val) {
         var vendors = ['', 'webkit', 'ms', 'Moz', 'O'],
-            body = document.body || document.documentElement;
+            body = document.documentElement;
 
         [].forEach.call(vendors, function (vendor) {
             var styleAttr = vendor ? vendor + attr : attr.charAt(0).toLowerCase() + attr.substr(1);
             if (typeof body.style[styleAttr] === 'string') {
-                console.log(styleAttr);
                 el.style[styleAttr] = val;
             }
         });
